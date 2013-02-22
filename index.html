@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="javascripts/main.js"></script>
     <!--<script src="http://cloud.github.com/downloads/thinkpixellab/tilesjs/tiles.js"></script>-->
     <script src="javascripts/tiles.js"></script>
@@ -109,6 +110,8 @@
         for(sKey in htData){
           TILE_IDS.push(sKey);
         }
+        TILE_IDS = _.shuffle(TILE_IDS);
+
         // create the grid and an event which will update the grid
         // when either tile count or window size changes
         var el = document.getElementById('sample1-grid'),
