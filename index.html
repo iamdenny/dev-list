@@ -6,8 +6,31 @@
     <title>Iamdenny.github.com by iamdenny</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     <script src="javascripts/main.js"></script>
+    <!--<script src="http://cloud.github.com/downloads/thinkpixellab/tilesjs/tiles.js"></script>-->
+    <script src="javascripts/tiles.js"></script>
+    <!--<script src="javascripts/Tile.js"></script>
+    <script src="javascripts/Grid.js"></script>
+    <script src="javascripts/Template.js"></script>
+    <script src="javascripts/UniformTemplates.js"></script>-->
+    <script type="text/javascript">
+      // debounce utility from underscorejs.org
+      var debounce = function(func, wait, immediate) {
+        var timeout;
+        return function() {
+          var context = this, args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          if (immediate && !timeout) func.apply(context, args);
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      };
+    </script>    
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -15,65 +38,115 @@
 
   </head>
   <body>
-
-      <header>
-        <h1>Iamdenny.github.com</h1>
-        <p>Hi, I am Denny. Gracias.</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/iamdenny" class="button fork"><strong>View On GitHub</strong></a>
-      </div><!-- end banner -->
-
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
+      <div id="sample1-grid" class="grid">
+      </div>
     </div>
+    <a href="http://www.github.com/iamdenny" id="forkme" title="Fork me on GitHub">
+      <img alt="Fork me on GitHub" src="./images/forkme.png">
+    </a>
+    <script>
+      $(function() {
+        var TILE_IDS = [];
+        var htData = {
+          "iamdenny.com" : {
+            "url" : "http://iamdenny.com",
+            "image" : "images/site001.png"
+          },
+          "MobilePhotoViewer" : {
+            "url" : "https://github.com/iamdenny/MobilePhotoViewer",
+            "image" : "images/site002.jpg"
+          },
+          "VendingMachine" : {
+            "url" : "http://dev.iamdenny.com/Vending-Machine/vending_machine.html",
+            "image" : "images/site003.jpg"
+          },
+          "LotteryEvent" : {
+            "url" : "http://dev.iamdenny.com/Mobile-Events/event1.html",
+            "image" : "images/site004.jpg"
+          },
+          "FreeKickEvent" : {
+            "url" : "http://dev.iamdenny.com/Mobile-Events/event3.html",
+            "image" : "images/site005.jpg"
+          },
+          "MyBookManager" : {
+            "url" : "http://mybookmanager.iamdenny.com",
+            "image" : "images/site006.png"
+          },
+          "blog.iamdenny.com" : {
+            "url" : "http://blog.iamdenny.com",
+            "image" : "images/site007.jpg"
+          },
+          "jindo2-code-generator" : {
+            "url" : "http://prezi.com/x2luj0i6rj0l/jindo2-code-generator/",
+            "image" : "images/site008.jpg"
+          },
+          "Html5WithPhoneGap" : {
+            "url" : "http://prezi.com/lsepcpcavmzf/html5-with-phonegap-12-technical-talk-seminar/",
+            "image" : "images/site009.jpg"
+          },
+          "Angular.js" : {
+            "url" : "http://prezi.com/rl8s3vjy3a44/with-angularjs/",
+            "image" : "images/site010.jpg"
+          },
+          "Jindo2CodeGenerator" : {
+            "url" : "http://dev.naver.com/projects/jcg",
+            "image" : "images/site011.jpg"
+          },
+          "Migrate-Oracle-To-Mysql" : {
+            "url" : "https://github.com/iamdenny/migrate-oracle-to-mysql",
+            "image" : "images/site012.jpg"
+          },
+          "Migrate-Cubird-To-Mysql" : {
+            "url" : "https://npmjs.org/package/migrate-cubrid-to-mysql",
+            "image" : "images/site013.jpg"
+          },
+          "javascript-standard-of-2012" : {
+            "url" : "http://javascript-standard-of-2012.iamdenny.com",
+            "image" : "images/site014.jpg"
+          }
+        }
+        for(sKey in htData){
+          TILE_IDS.push(sKey);
+        }
+        // create the grid and an event which will update the grid
+        // when either tile count or window size changes
+        var el = document.getElementById('sample1-grid'),
+            grid = new Tiles.Grid(el);
+        grid.animationDuration = 200;
+        
+        grid.createTile = function(tileId) {
+            var tile =  new Tiles.Tile(tileId);
+            tile.$el.addClass("tile");
+            tile.$el.html('<a href="'+htData[tileId]['url']+'"><img src="'+htData[tileId]['image']+'" width="100%" height="100%"></a>');
+            return tile;
+        };
+
+        grid.updateTiles(TILE_IDS);
+        grid.redraw(true /* animate tile movements */);
+
+        // wait until user finishes resizing the browser
+        var debouncedResize = debounce(function() {
+            grid.resize();
+            grid.redraw(true);
+        }, 200);
+
+        // when the window resizes, redraw the grid
+        $(window).resize(debouncedResize);
+    });
+    </script>
+
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-38603692-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-38603692-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
 
   </body>
 </html>

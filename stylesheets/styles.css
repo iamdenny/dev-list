@@ -100,6 +100,7 @@ audio:not([controls]) {
  */
 html {
   font-size: 100%;
+  height: 100%;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
@@ -123,6 +124,7 @@ textarea {
  */
 body {
   margin: 0;
+  height: 100%;
 }
 
 /* =============================================================================
@@ -506,8 +508,8 @@ body {
   font: 14px/22px "Quattrocento Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #666;
   font-weight: 300;
-  margin: 0px;
-  padding: 0px 0 20px 0px;
+  margin: 0;
+  padding: 0;
   background: url(../images/body-background.png) #eae6d1;
 }
 
@@ -565,9 +567,9 @@ strong {
 }
 
 .wrapper {
-  width: 650px;
-  margin: 0 auto;
-  position: relative;
+  width: 100%;
+  margin: 0;
+  height: 100%;
 }
 
 section img {
@@ -653,7 +655,6 @@ dt {
 header {
   padding: 25px 20px 40px 20px;
   margin: 0;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -858,6 +859,27 @@ footer {
   bottom: 20px;
   text-align: right;
   line-height: 16px;
+}
+
+#forkme {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  border: none; 
+}
+#forkme img { 
+  width: auto; 
+}
+.grid {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.grid > div {
+    background-color: #efefef;
+    position: absolute;
 }
 
 @media print, screen and (max-width: 1060px) {
